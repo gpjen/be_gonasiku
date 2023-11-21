@@ -6,7 +6,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
-	"gonasiku.com/db"
 )
 
 func main() {
@@ -18,7 +17,7 @@ func main() {
 
 	app := fiber.New()
 
-	db.InitMysqlDB()
+	// db.InitMysqlDB()
 
 	app.Use(cors.New(
 		cors.Config{
