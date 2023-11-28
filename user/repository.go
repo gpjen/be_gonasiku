@@ -2,6 +2,15 @@ package user
 
 import "gorm.io/gorm"
 
+type Repository interface {
+	FindAll() ([]User, error)
+	FindByID(id int) (User, error)
+	Create(input UserRegister) (User, error)
+	Update(id int, input UserUpdate) (User, error)
+	Delete(id int) (User, error)
+	DeletePermanent(id int) (User, error)
+}
+
 type repository struct {
 	db *gorm.DB
 }

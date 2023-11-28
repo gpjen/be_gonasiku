@@ -22,7 +22,6 @@ func InitPostgresDB() {
 		os.Getenv("DB_POSTGRES_TIMEZONE"))
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
-	fmt.Println(dsn)
 	if err != nil {
 		panic("failed to connect database")
 	}
