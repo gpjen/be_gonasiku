@@ -3,7 +3,7 @@ package campaign
 import (
 	"time"
 
-	"gonasiku.com/app/user"
+	"gonasiku.com/user"
 )
 
 type Campaign struct {

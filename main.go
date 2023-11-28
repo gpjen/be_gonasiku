@@ -1,11 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
+	"gonasiku.com/db"
+	"gonasiku.com/user"
 )
 
 func main() {
@@ -17,7 +20,34 @@ func main() {
 
 	app := fiber.New()
 
-	// db.InitMysqlDB()
+	db.InitPostgresDB()
+
+	userRepository := user.NewRepository(db.PostgresDB)
+
+	// user, _ := userRepository.Create(user.UserRegister{
+	// 	Name:     "test",
+	// 	Email:    "test@one.com",
+	// 	Password: "rahasiatest",
+	// 	Phone:    "0862516522222",
+	// 	Addres:   "cimahi",
+	// 	Gender:   "p",
+	// })
+
+	// user, _ := userRepository.FindByID(1)
+
+	// user, _ := userRepository.Update(3, user.UserUpdate{
+	// 	Name:   "ariana",
+	// 	Email:  "ariana@grenade.com",
+	// 	Phone:  "01212121212122",
+	// 	Addres: "pacitan",
+	// 	Gender: "p",
+	// })
+
+	// user, _ := userRepository.Delete(3)
+
+	user, _ := userRepository.DeletePermanent(3)
+
+	fmt.Println(user)
 
 	app.Use(cors.New(
 		cors.Config{
